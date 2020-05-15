@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ProductInformation</title>
+</head>
+<body>
+
+    {{msg}}
+
+    <form action="http://localhost:5001/consumer/save/" method="post">
+        Product Id : <input type="text" name="pid" value="{{product.productId}}"> <br><br>
+        Product Name : <input type="text" name="pnm" value="{{product.productName}}"> <br><br>
+        Product Qty : <input type="text" name="pqty" value="{{product.productQty}}"> <br><br>
+        Product Price : <input type="text" name="ppri" value="{{product.productPrice}}"> <br><br>
+        <input type="submit"/>
+    </form>
+
+    <table>
+            <thead>
+                <th>Id</th><th>name</th><th>Price</th><th>Qty</th>
+                <th>Action</th>
+            </thead>
+            {% for prod in products %}
+                    <tbody>
+                        <td>{{prod.productId}}</td>
+                    <td>{{prod.productName}}</td>
+                    <td>{{prod.productPrice}}</td>
+                    <td>{{prod.productQty}}</td>
+                        <td>
+                            <a href="http://localhost:5001/consumer/edit/{{prod.productId}}">EDIT</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a href="http://localhost:5001/consumer/delete/{{prod.productId}}">DELETE</a>
+
+                        </td>
+                    </tbody>
+            {% endfor %}
+
+    </table>
+
+</body>
+</html>
